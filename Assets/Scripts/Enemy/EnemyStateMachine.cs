@@ -32,7 +32,7 @@ public class EnemyStateMachine : MonoBehaviour
     private void Awake()
     {
         CurrentHealth = Health;
-        Player = GameObject.Find("Player").transform;
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -44,31 +44,14 @@ public class EnemyStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetComponent<DebugPlayerRestart>().Restart)
-            Restart();
-            
-
-        // Back to initial pos
-/*        if (!arenaCollider.GetComponent<TriggerEnemies>().chaseEnemy)
-        {
-            //Debug.Log("NOT Chase");
-            agent.destination = initialPosition;
-        }*/
-
-        // Chase player if he/she enters the arena
-        else
-        {
-            //Debug.Log("Chase");
-            TakeDamage(10f * Time.deltaTime);
-            agent.destination = Player.transform.position;
-            float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
+        TakeDamage(10f * Time.deltaTime);
+        agent.destination = Player.transform.position;
+        float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
         
-            if (distance <= attackRange)
-            {
-                Attack();
-            }
+        if (distance <= attackRange)
+        {
+            Attack();
         }
-
     }
 
     private void Attack()
@@ -133,13 +116,5 @@ public class EnemyStateMachine : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
-    }
-
-    private void Restart()
-    {
-        Debug.Log("Not dead");
-        isDead = false;
-        transform.position = initialPosition;
-        CurrentHealth = Health;
     }
 }

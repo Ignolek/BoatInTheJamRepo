@@ -12,6 +12,10 @@ public class HealthSystem : MonoBehaviour
     public Color healthColor;
     public List<Image> hearths;
 
+    // Checkpoint
+    public Vector3 lastCheckpointPosition;
+    public bool Restart;
+
     public void TakeDamage()
     {
         curentHealth--;
@@ -49,6 +53,8 @@ public class HealthSystem : MonoBehaviour
     public void Die()
     {
         // TODO: Checkpoints
+        Restart = true;
+        transform.position = lastCheckpointPosition;
     }
 
     private void Start()

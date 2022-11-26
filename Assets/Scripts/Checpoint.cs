@@ -8,7 +8,7 @@ public class Checpoint : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            other.GetComponent<DebugPlayerRestart>().lastCheckpointPosition = transform.position;
+            other.GetComponent<HealthSystem>().lastCheckpointPosition = transform.position;
         }
     }
 }
