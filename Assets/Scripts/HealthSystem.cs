@@ -44,6 +44,8 @@ public class HealthSystem : MonoBehaviour
             hearths[0].fillAmount = 0.5f;
     }
 
+    //public void 
+
     public void Die()
     {
         // TODO: Checkpoints

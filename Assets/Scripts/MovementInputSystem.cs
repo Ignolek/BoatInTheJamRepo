@@ -13,8 +13,10 @@ public class MovementInputSystem : MonoBehaviour
     public float dashTimeCooldown;
     [Header("Lock in place")]
     public bool lockInPlace;
+    public bool lockRotation;
     [Header("Animations")]
-    public Animator animator;
+    public Animator bodyAnimator;
+    public Animator mirrorAnimator;
     [HideInInspector] public Rigidbody rigidBody;
     [HideInInspector] public PlayerInput playerInput;
     [HideInInspector] public PlayerInputActions inputActions;
@@ -38,22 +40,21 @@ public class MovementInputSystem : MonoBehaviour
         
         if (!lockInPlace)
         {
-            rigidBody.MovePosition(transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed);
-            animator.SetBool("Move", true);
+            rigidBody.MovePosition((transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed));
+            bodyAnimator.SetBool("Move", true);
         }
         else
         {
-            animator.SetBool("Move", false);
+            bodyAnimator.SetBool("Move", false);
         }
 
-
-        if (inputVector != Vector2.zero)
+        if (inputVector != Vector2.zero && !lockRotation)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(inputVector.x, 0, inputVector.y));
         }
         if (inputVector == Vector2.zero)
         {
-            animator.SetBool("Move", false);
+            bodyAnimator.SetBool("Move", false);
         }
     }
 
@@ -79,16 +80,18 @@ public class MovementInputSystem : MonoBehaviour
     {
         if (!context.performed)
             return;
-     
-        Debug.Log("l-a");
+
+        mirrorAnimator.SetTrigger("LightAttack");
     }
     
     private void HeavyAttack_performed(InputAction.CallbackContext context)
     {
         if (!context.performed)
             return;
-    
-        Debug.Log("h-a");
+
+        lockInPlace = true;
+        lockRotation = true;
+        mirrorAnimator.SetTrigger("HeavyAttack");
     }
 
     private void StayInPlace_performed(InputAction.CallbackContext context)
