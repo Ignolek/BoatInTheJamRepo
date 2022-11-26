@@ -956,6 +956,8 @@ MonoBehaviour:
   - {fileID: 611782698}
   - {fileID: 1124594691}
   - {fileID: 122224161}
+  lastCheckpointPosition: {x: 0, y: 0, z: 0}
+  Restart: 0
 --- !u!1 &405039446
 GameObject:
   m_ObjectHideFlags: 0
@@ -5341,57 +5343,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.4541
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.4541
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.4541
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.122
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.429
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314591, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 147314592, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 591922884100915880, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 591922884100915882, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
-      propertyPath: timeBetweenDashes
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 591922884100915892, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_RootOrder
