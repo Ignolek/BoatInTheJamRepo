@@ -28,6 +28,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     //Attack
     bool alreadyAttacked;
+    bool charge;
 
     private void Awake()
     {
@@ -78,8 +79,10 @@ public class EnemyStateMachine : MonoBehaviour
             {
                 // Melee attack code here:
 
-                agent.speed *= 20;
+                agent.speed *= 50;
                 transform.localScale *= 1.2f;
+
+                charge = true;
 
                 //
             }
@@ -97,7 +100,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (!isRangeType)
         {
             // DEBUG
-            agent.speed /= 20;
+            agent.speed /= 50;
             transform.localScale /= 1.2f;
         }
 
@@ -116,5 +119,16 @@ public class EnemyStateMachine : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(charge == true)
+        {
+            if (collision.other.CompareTag("Player"))
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<HealthSystem>().TakeDamage();
+            }
+        }
     }
 }

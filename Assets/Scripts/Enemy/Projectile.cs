@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.rigidbody.name);
-        if(collision.rigidbody.CompareTag("Player"))
+        if(collision.other.CompareTag("Player"))
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<HealthSystem>().TakeDamage();
         }
