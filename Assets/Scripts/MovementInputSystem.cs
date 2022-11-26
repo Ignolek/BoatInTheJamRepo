@@ -6,11 +6,14 @@ using UnityEngine.InputSystem;
 
 public class MovementInputSystem : MonoBehaviour
 {
-    // TODO: Change it later
+    [Header("Movement")]
     public float speed;
+    [Header("Dash")]
     public float dashSpeed;
     public float dashTimeCooldown;
+    [Header("Lock in place")]
     public bool lockInPlace;
+    [Header("Animations")]
     public Animator animator;
     [HideInInspector] public Rigidbody rigidBody;
     [HideInInspector] public PlayerInput playerInput;
