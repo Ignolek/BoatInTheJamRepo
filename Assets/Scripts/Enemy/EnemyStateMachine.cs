@@ -5,12 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : MonoBehaviour
 {
-
     //"Actors"
     private NavMeshAgent agent;
     public Transform Player;
-
-    // DEBUG:
+    public Transform ShootPoint;
 
     //Params
     public float Health;
@@ -21,12 +19,14 @@ public class EnemyStateMachine : MonoBehaviour
     public bool isRangeType;
     public GameObject projectile;
     public float attackRange;
+    public float projectileSpeed;
 
     //Attack
     bool alreadyAttacked;
 
     private void Awake()
     {
+        CurrentHealth = Health;
         Player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -58,12 +58,12 @@ public class EnemyStateMachine : MonoBehaviour
             {
                 // Range attack code here:
 
-                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-                rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+                Rigidbody rb = Instantiate(projectile, ShootPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+                rb.AddForce(ShootPoint.transform.forward * projectileSpeed, ForceMode.Impulse);
 
                 //
             }
+
             else
             {
                 // Melee attack code here:
@@ -81,14 +81,27 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
+
     private void ResetAttack()
     {
         if (!isRangeType)
         {
+            // DEBUG
             agent.speed /= 20;
             transform.localScale /= 1.2f;
         }
 
         alreadyAttacked = false;
+    }
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
+            Invoke(nameof(DestroyEnemy), 0.5f);
+    }
+
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 }
