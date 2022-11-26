@@ -36,19 +36,21 @@ public class MovementInputSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (lockInPlace && lockRotation)
+        {
+            bodyAnimator.SetBool("Move", false);
+            return;
+        }
+
         Vector2 inputVector = inputActions.Player.Movement.ReadValue<Vector2>();
-        
+
         if (!lockInPlace)
         {
             rigidBody.MovePosition((transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed));
             bodyAnimator.SetBool("Move", true);
         }
-        else
-        {
-            bodyAnimator.SetBool("Move", false);
-        }
 
-        if (inputVector != Vector2.zero && !lockRotation)
+        if (inputVector != Vector2.zero)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(inputVector.x, 0, inputVector.y));
         }
