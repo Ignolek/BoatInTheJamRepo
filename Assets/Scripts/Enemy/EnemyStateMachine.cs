@@ -10,6 +10,10 @@ public class EnemyStateMachine : MonoBehaviour
     public Transform Player;
     public Transform ShootPoint;
 
+    private Vector3 initialPosition;
+    public Collider arenaCollider;
+    public bool isPlayerOnStage;
+
     //Params
     public float Health;
     public float CurrentHealth;
@@ -31,17 +35,35 @@ public class EnemyStateMachine : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
+    private void Start()
+    {
+        initialPosition = transform.position;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        agent.destination = Player.transform.position;
-        float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
-        
-        if (distance <= attackRange)
+
+        // Back to initial pos
+        if (!arenaCollider.GetComponent<TriggerEnemies>().chaseEnemy)
         {
-            Attack();
+            Debug.Log("NOT Chase");
+            agent.destination = initialPosition;
         }
+
+        // Chase player if he/she enters the arena
+        else
+        {
+            Debug.Log("Chase");
+            agent.destination = Player.transform.position;
+            float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
+        
+            if (distance <= attackRange)
+            {
+                Attack();
+            }
+        }
+
     }
 
     private void Attack()
