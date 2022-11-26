@@ -38,6 +38,11 @@ public class MovementInputSystem : MonoBehaviour
             rigidBody.MovePosition(transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed);
             animator.SetBool("Move", true);
         }
+        else
+        {
+            animator.SetBool("Move", false);
+        }
+
 
         if (inputVector != Vector2.zero)
         {
