@@ -93,7 +93,10 @@ GameObject:
   - component: {fileID: 1173809854}
   - component: {fileID: 1173809853}
   - component: {fileID: 1173809852}
+  - component: {fileID: 2020584406310963088}
   - component: {fileID: 1173809856}
+  - component: {fileID: 965263434}
+  - component: {fileID: 965263436}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Untagged
@@ -185,6 +188,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2020584406310963088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173809851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1170db4f8adfad7479d302d25d6a9c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1173809856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +212,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a5bb96c248e324f85d14f811d64ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &965263434
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173809851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9651349, y: 1.9356265, z: 6.8370657}
+  m_Center: {x: -0.00000009934108, y: 0.00000023656945, z: -2.2574394}
+--- !u!135 &965263436
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173809851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 4.5
+  m_Center: {x: 0, y: 0, z: 3.08}
 --- !u!1 &1352881367
 GameObject:
   m_ObjectHideFlags: 0

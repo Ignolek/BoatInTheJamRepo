@@ -43,17 +43,19 @@ public class MovementInputSystem : MonoBehaviour
         }
 
         Vector2 inputVector = inputActions.Player.Movement.ReadValue<Vector2>();
+        Debug.Log(inputVector);
 
         if (!lockInPlace)
         {
-            rigidBody.MovePosition((transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed));
+            rigidBody.MovePosition((transform.position + Quaternion.Euler(0, 37, 0) * new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed));
             bodyAnimator.SetBool("Move", true);
         }
 
         if (inputVector != Vector2.zero)
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(inputVector.x, 0, inputVector.y));
+            transform.rotation = Quaternion.LookRotation(Quaternion.Euler(0, 37, 0) * new Vector3(inputVector.x, 0, inputVector.y));
         }
+
         if (inputVector == Vector2.zero)
         {
             bodyAnimator.SetBool("Move", false);
