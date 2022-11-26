@@ -11,6 +11,9 @@ public class MovementInputSystem : MonoBehaviour
     [Header("Dash")]
     public float dashSpeed;
     public float dashTimeCooldown;
+    public float timeBetweenDashes;
+    private float cTimeBetweenDashes;
+    private bool dashPerformed;
     [Header("Lock in place")]
     public bool lockInPlace;
     public bool lockRotation;
@@ -36,6 +39,18 @@ public class MovementInputSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (dashPerformed)
+        {
+            if (cTimeBetweenDashes >= timeBetweenDashes)
+            {
+                dashPerformed = false;
+                cTimeBetweenDashes = 0;
+            }
+
+            cTimeBetweenDashes += Time.deltaTime;
+        }
+
+
         if (lockInPlace && lockRotation)
         {
             bodyAnimator.SetBool("Move", false);
@@ -43,7 +58,6 @@ public class MovementInputSystem : MonoBehaviour
         }
 
         Vector2 inputVector = inputActions.Player.Movement.ReadValue<Vector2>();
-        Debug.Log(inputVector);
 
         if (!lockInPlace)
         {
@@ -66,6 +80,11 @@ public class MovementInputSystem : MonoBehaviour
     {
         if (!context.performed)
             return;
+
+        if (dashPerformed)
+            return;
+
+        dashPerformed = true;
 
         Vector3 inputVector = transform.forward;
 
@@ -102,6 +121,8 @@ public class MovementInputSystem : MonoBehaviour
     {
         if (!context.performed)
             return;
+
+        bodyAnimator.SetBool("Move", false);
 
         lockInPlace = !lockInPlace;
     }

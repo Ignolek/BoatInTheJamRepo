@@ -565,6 +565,7 @@ MonoBehaviour:
   speed: 20
   dashSpeed: 100
   dashTimeCooldown: 0.2
+  timeBetweenDashes: 0.5
   lockInPlace: 0
   lockRotation: 0
   bodyAnimator: {fileID: 591922883938307913}
