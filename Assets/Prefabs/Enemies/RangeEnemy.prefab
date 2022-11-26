@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4588094378366740034}
   m_Layer: 0
   m_Name: RangeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,9 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   ShootPoint: {fileID: 620956271617590862}
-  initialTransform: {fileID: 0}
   isPlayerOnStage: 0
-  Health: 50
+  Health: 100
   CurrentHealth: 0
   DamagePerHit: 0
   timeBetweenAttacks: 0.5
@@ -147,6 +146,7 @@ MonoBehaviour:
   projectile: {fileID: 2884157743764703704, guid: b8febf0ad2c8f074aaa62f55725f99be, type: 3}
   attackRange: 10
   projectileSpeed: 10
+  isDead: 0
 --- !u!54 &-4588094378366740034
 Rigidbody:
   m_ObjectHideFlags: 0

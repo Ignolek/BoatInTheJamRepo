@@ -11,7 +11,7 @@ public class EnemyStateMachine : MonoBehaviour
     public Transform ShootPoint;
 
     private Vector3 initialPosition;
-    public Collider arenaCollider;
+    //public Collider arenaCollider;
     public bool isPlayerOnStage;
 
     //Params
@@ -24,6 +24,7 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject projectile;
     public float attackRange;
     public float projectileSpeed;
+    public bool isDead;
 
     //Attack
     bool alreadyAttacked;
@@ -43,18 +44,22 @@ public class EnemyStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Player.GetComponent<DebugPlayerRestart>().Restart)
+            Restart();
+            
 
         // Back to initial pos
-        if (!arenaCollider.GetComponent<TriggerEnemies>().chaseEnemy)
+/*        if (!arenaCollider.GetComponent<TriggerEnemies>().chaseEnemy)
         {
-            Debug.Log("NOT Chase");
+            //Debug.Log("NOT Chase");
             agent.destination = initialPosition;
-        }
+        }*/
 
         // Chase player if he/she enters the arena
         else
         {
-            Debug.Log("Chase");
+            //Debug.Log("Chase");
+            TakeDamage(10f * Time.deltaTime);
             agent.destination = Player.transform.position;
             float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
         
@@ -119,11 +124,22 @@ public class EnemyStateMachine : MonoBehaviour
     {
         CurrentHealth -= damage;
         if (CurrentHealth <= 0)
+        {
+            Debug.Log("Dead");
             Invoke(nameof(DestroyEnemy), 0.5f);
+        }
     }
 
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+    }
+
+    private void Restart()
+    {
+        Debug.Log("Not dead");
+        isDead = false;
+        transform.position = initialPosition;
+        CurrentHealth = Health;
     }
 }

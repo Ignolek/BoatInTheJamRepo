@@ -10,7 +10,7 @@ public class TriggerEnemies : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Should Chase");
+            //Debug.Log("Should Chase");
             chaseEnemy = true;
         }
     }
@@ -18,7 +18,7 @@ public class TriggerEnemies : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Shoul NOT Chase");
+            //Debug.Log("Shoul NOT Chase");
             chaseEnemy = false;
         }
     }

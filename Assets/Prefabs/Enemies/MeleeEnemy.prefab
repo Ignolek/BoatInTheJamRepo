@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3795752030981570056}
   m_Layer: 0
   m_Name: MeleeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   ShootPoint: {fileID: 6893087410843644206}
-  initialTransform: {fileID: 0}
   isPlayerOnStage: 0
   Health: 100
   CurrentHealth: 0
@@ -146,6 +145,7 @@ MonoBehaviour:
   projectile: {fileID: 2884157743764703704, guid: b8febf0ad2c8f074aaa62f55725f99be, type: 3}
   attackRange: 10
   projectileSpeed: 0
+  isDead: 0
 --- !u!54 &3795752030981570056
 Rigidbody:
   m_ObjectHideFlags: 0
