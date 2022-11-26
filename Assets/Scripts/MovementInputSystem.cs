@@ -9,9 +9,11 @@ public class MovementInputSystem : MonoBehaviour
     // TODO: Change it later
     public float speed;
     public float dashSpeed;
-    public Rigidbody rigidBody;
-    public PlayerInput playerInput;
-    public PlayerInputActions inputActions;
+    public float dashTimeCooldown;
+    public bool lockInPlace;
+    [HideInInspector] public Rigidbody rigidBody;
+    [HideInInspector] public PlayerInput playerInput;
+    [HideInInspector] public PlayerInputActions inputActions;
 
     private void Awake()
     {
@@ -23,41 +25,63 @@ public class MovementInputSystem : MonoBehaviour
         inputActions.Player.Dash.performed += Dash_performed;
         inputActions.Player.LightAttack.performed += LightAttack_performed;
         inputActions.Player.HeavyAttack.performed += HeavyAttack_performed;
+        inputActions.Player.StayInPlace.performed += StayInPlace_performed;
     }
+
+
 
     private void FixedUpdate()
     {
         Vector2 inputVector = inputActions.Player.Movement.ReadValue<Vector2>();
+        
+        if (!lockInPlace)
+            rigidBody.MovePosition(transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed);
 
         if (inputVector != Vector2.zero)
         {
-            rigidBody.MovePosition(transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed);
             transform.rotation = Quaternion.LookRotation(new Vector3(inputVector.x, 0, inputVector.y));
         }
     }
+
     private void Dash_performed(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Vector3 inputVector = Vector3.forward;
-                
-            rigidBody.AddForce(inputVector * dashSpeed, ForceMode.Impulse);
-        }
+        if (!context.performed)
+            return;
+
+        Vector3 inputVector = transform.forward;
+
+        rigidBody.AddForce(inputVector * dashSpeed, ForceMode.VelocityChange);
+        StartCoroutine(DashCooldown());
+    }
+
+    IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(dashTimeCooldown);
+        rigidBody.velocity = Vector3.zero;
+        rigidBody.angularVelocity = Vector3.zero;
     }
 
     private void LightAttack_performed(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Debug.Log("l-a");
-        }
+        if (!context.performed)
+            return;
+     
+        Debug.Log("l-a");
     }
     
     private void HeavyAttack_performed(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Debug.Log("h-a");
-        }
+        if (!context.performed)
+            return;
+    
+        Debug.Log("h-a");
+    }
+
+    private void StayInPlace_performed(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+            return;
+
+        lockInPlace = !lockInPlace;
     }
 }
