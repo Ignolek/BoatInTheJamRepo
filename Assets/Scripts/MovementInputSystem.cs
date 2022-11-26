@@ -11,6 +11,7 @@ public class MovementInputSystem : MonoBehaviour
     public float dashSpeed;
     public float dashTimeCooldown;
     public bool lockInPlace;
+    public Animator animator;
     [HideInInspector] public Rigidbody rigidBody;
     [HideInInspector] public PlayerInput playerInput;
     [HideInInspector] public PlayerInputActions inputActions;
@@ -28,18 +29,23 @@ public class MovementInputSystem : MonoBehaviour
         inputActions.Player.StayInPlace.performed += StayInPlace_performed;
     }
 
-
-
     private void FixedUpdate()
     {
         Vector2 inputVector = inputActions.Player.Movement.ReadValue<Vector2>();
         
         if (!lockInPlace)
+        {
             rigidBody.MovePosition(transform.position + new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed);
+            animator.SetBool("Move", true);
+        }
 
         if (inputVector != Vector2.zero)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(inputVector.x, 0, inputVector.y));
+        }
+        if (inputVector == Vector2.zero)
+        {
+            animator.SetBool("Move", false);
         }
     }
 
