@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: a97b3ad51d84a804eb50acc7c1701ca8, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 148cfcac2b84d6c4e8a4ae7fc233150c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.49285102, g: 0.21388814, b: 0.37817538, a: 1}
+  m_IndirectSpecularColor: {r: 0.08572551, g: 0.31959152, b: 0.56495583, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10980,7 +10980,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 80}
   m_Children: []
   m_Father: {fileID: 922513837}
-  m_RootOrder: 20
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &603718310
 BoxCollider:
@@ -17582,6 +17582,7 @@ Transform:
   - {fileID: 1057308572}
   - {fileID: 90463963}
   - {fileID: 1585219999}
+  - {fileID: 603718309}
   - {fileID: 864295295}
   - {fileID: 847302221}
   - {fileID: 503594252}
@@ -17593,7 +17594,6 @@ Transform:
   - {fileID: 84041917}
   - {fileID: 73956020}
   - {fileID: 226227502}
-  - {fileID: 603718309}
   - {fileID: 186790202}
   - {fileID: 2056219206}
   - {fileID: 1093434745}
