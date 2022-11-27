@@ -19,7 +19,12 @@ public class HealthSystem : MonoBehaviour
     public void RestoreFullHealth()
     {
         curentHealth = maxHealth;
-        // TODO
+
+        hearths[0].fillAmount = 1;
+        hearths[1].fillAmount = 1;
+        hearths[2].fillAmount = 1;
+        hearths[3].fillAmount = 1;
+        hearths[4].fillAmount = 1;
     }
 
     public void TakeDamage()

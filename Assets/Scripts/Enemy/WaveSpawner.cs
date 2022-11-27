@@ -118,7 +118,7 @@ public class WaveSpawner : MonoBehaviour
         waveTimeCountdown = timeBetweenWaves;
 
         // We need to check if there are more waves
-        if (nextWave + 1 > waves.Length - 1/* || Player.GetComponent<HealthSystem>().Restart*/) // TODO: this line of code
+        if (nextWave + 1 > waves.Length - 1)
         {
             Debug.Log("All waves complete... Looping!");
             nextWave = 0;
