@@ -24,6 +24,13 @@ public class MovementInputSystem : MonoBehaviour
     [HideInInspector] public PlayerInput playerInput;
     [HideInInspector] public PlayerInputActions inputActions;
 
+    public void ChangePlayerColor()
+    {
+        var healthSystem = FindObjectOfType<HealthSystem>().currentColor;
+
+        GameObject.Find("Tooth").GetComponent<Renderer>().material.SetColor("_Color", healthSystem);
+    }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
