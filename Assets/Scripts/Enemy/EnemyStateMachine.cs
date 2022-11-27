@@ -33,7 +33,7 @@ public class EnemyStateMachine : MonoBehaviour
     private void Awake()
     {
         CurrentHealth = Health;
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        Player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

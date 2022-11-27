@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    private Coroutine coroutine;
-    public enum SpawnState { SPAWNING, WAITING, COUNTING };
-    public bool inCombat;
-    GameObject Player;
-    GameObject[] enemiesToDestroy;
-
-
     [System.Serializable]
     public class Wave
     {
@@ -20,83 +13,99 @@ public class WaveSpawner : MonoBehaviour
         public float rate;
     }
 
-    public Wave[] waves;
-    private int nextWave = 0;
-
+    [Header("Player")]
+    public GameObject player;
+    public HealthSystem healthSystem;
+    public bool inCombat;
+    [Header("Enemies")]
     public Transform[] spawnPoints;
-
+    public enum SpawnState { SPAWNING, WAITING, COUNTING };
+    [Header("Waves")]
+    public SpawnState state;
     public float timeBetweenWaves = 5f;
-    public float waveCountdown;
+    public float waveTimeCountdown;
+    private Coroutine activeCoroutine;
+    public Wave[] waves;
+    public int nextWave = 0;
 
-    private float searchCountdown = 1f;
-
-    public SpawnState state = SpawnState.COUNTING;
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
-        {
+        if (other.transform.parent.transform.name == player.transform.name)
             inCombat = true;
-        }
     }
-    private void Start()
+
+    private void Awake()
     {
-        waveCountdown = timeBetweenWaves;
-        Player = GameObject.FindGameObjectWithTag("Player");
+        waveTimeCountdown = timeBetweenWaves;
+        state = SpawnState.COUNTING;
+    }
+
+    private void CurrentlyInCombat()
+    {
+        // Check if time that passed from the beginning of the OnTriggerEnter
+        if (waveTimeCountdown <= 0)
+        {
+            waveTimeCountdown = timeBetweenWaves;
+
+            // If time is less than 0 we need to check if we are spawning something at the moment
+            if (state != SpawnState.SPAWNING)
+            {
+                // Start spawning wave
+                activeCoroutine = StartCoroutine(SpawnWave(waves[nextWave]));
+            }
+        }
+        // if not, decrese countdown
+        else
+        {
+            if (state != SpawnState.SPAWNING && state != SpawnState.WAITING)
+                waveTimeCountdown -= Time.deltaTime;
+        }
+
+        // Check if current state is WAITING
+        if (state != SpawnState.WAITING && state != SpawnState.SPAWNING)
+            return;
+
+        // Check if enemies are still alive
+        if (EnemyIsAlive())
+            return;
+     
+        // Begin a new round
+        WaveCompleted();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetComponent<HealthSystem>().Restart)
+        // Check if player is still alive
+        if (!healthSystem.IsStillAlive())
         {
-            // Zatrzymaj korutyne zwiazana z dana fala
-            StopCoroutine(coroutine);
+            // End players life
+            healthSystem.Die();
 
-            // USUN WSZYSTKICH WROGOW ZE SCENY
-            enemiesToDestroy = GameObject.FindGameObjectsWithTag("Enemy");
+            // Stop the coroutine
+            EndCoroutine();
+
+            // Remove all enemies from the scene
+            GameObject[] enemiesToDestroy = GameObject.FindGameObjectsWithTag("Enemy");
             for (int i = 0; i < enemiesToDestroy.Length; i++)
-            {
                 Destroy(enemiesToDestroy[i]);
-            }
 
-            // Przywroc wartosci poczatkowe parametrow
+            // Restore all basic variables for player etc
             inCombat = false;
-            Player.GetComponent<HealthSystem>().Restart = false;
-            Player.GetComponent<HealthSystem>().curentHealth = Player.GetComponent<HealthSystem>().maxHealth;
-            waveCountdown = timeBetweenWaves;
+            nextWave = 0;
+            healthSystem.RestoreFullHealth();
+            player.transform.position = healthSystem.lastCheckpoint;
+            //player.GetComponent<Rigidbody>().position = healthSystem.lastCheckpoint.transform.position;
+            //player.transform.rotation = healthSystem.lastCheckpoint.transform.rotation;
+            waveTimeCountdown = timeBetweenWaves;
             state = SpawnState.COUNTING;
         }
-
-        // Spawn wave only when player enters the arena
-        if (inCombat == true)
+        
+        if (inCombat)
         {
-            if (state == SpawnState.WAITING) // Wait to kill all enemies
-            {
-                // Check if enemies are still alive
-                if (!EnemyIsAlive())
-                {
-                    // Begin a new round
-                    WaveCompleted();
-                }
-
-                else
-                {
-                    return;
-                }
-            }
-            if (waveCountdown <= 0)
-            {
-                if (state != SpawnState.SPAWNING)
-                {
-                    // Start spawning wave
-                    coroutine = StartCoroutine(SpawnWave(waves[nextWave])); 
-                }
-            }
-            else
-            {
-                waveCountdown -= Time.deltaTime;
-            }
+            CurrentlyInCombat();
+            return;
         }
     }
 
@@ -104,49 +113,61 @@ public class WaveSpawner : MonoBehaviour
     {
         Debug.Log("Wave Completed!");
 
+        // Change state to COUNTING
         state = SpawnState.COUNTING;
-        waveCountdown = timeBetweenWaves;
+        waveTimeCountdown = timeBetweenWaves;
 
-        if (nextWave + 1 > waves.Length - 1 || Player.GetComponent<HealthSystem>().Restart)
+        // We need to check if there are more waves
+        if (nextWave + 1 > waves.Length - 1/* || Player.GetComponent<HealthSystem>().Restart*/) // TODO: this line of code
         {
-            nextWave = 0;
             Debug.Log("All waves complete... Looping!");
+            nextWave = 0;
             inCombat = false;
         }
+        // If there are more waves...
         else
-        {
             nextWave++;
-        }
-
     }
+
     bool EnemyIsAlive()
     {
-        searchCountdown -= Time.deltaTime;
-        if (searchCountdown <= 0f)
-        {
-            searchCountdown = 1f;
-            if (GameObject.FindGameObjectWithTag("Enemy") == null)
-            {
-                return false;
-            }
-        }
+        GameObject[] enemiesToDestroy = GameObject.FindGameObjectsWithTag("Enemy");
 
-        return true;
+        //Debug.Log(enemiesToDestroy.Length);
+
+        if (enemiesToDestroy.Length != 0)
+            return true;
+
+        // TODO: this one might create some bugs, but we will deal with it later
+        return false;
     }
+    
     IEnumerator SpawnWave(Wave _wave)
     {
+        // Change the current status to SPAWNING
         state = SpawnState.SPAWNING;
 
+        // Debug which wave we are spawning
         Debug.Log("Spawning Wave: " + _wave.name);
+
+        // Spawn as much enemies as we need
         for (int i = 0; i < _wave.count; i++)
         {
+            // TODO: check this one - range is exlusive in the max
             SpawnEnemies(_wave.enemies[Random.Range(0, _wave.enemies.Length)]);
             yield return new WaitForSeconds(1f/_wave.rate);
         }
         
+        // After we spawn enemies, we're changing it to WAITING state
         state = SpawnState.WAITING;
-        
-        yield break;
+
+        // End the current coroutine to prevent errors
+        EndCoroutine();
+    }
+
+    private void EndCoroutine()
+    {
+        StopCoroutine(activeCoroutine);
     }
 
     void SpawnEnemies(Transform _enemies)

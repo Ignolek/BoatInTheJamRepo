@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Checpoint : MonoBehaviour
 {
+    [Header("Checkpoint values")]
+    public Transform transform;
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.transform.parent.transform.name == "Player")
         {
-            other.GetComponent<HealthSystem>().lastCheckpointPosition = transform.position;
+            GameObject player = other.transform.parent.gameObject;
+
+            transform = player.transform;
+
+            HealthSystem health = FindObjectOfType<HealthSystem>();
+            health.lastCheckpoint = transform.position;
         }
     }
 }

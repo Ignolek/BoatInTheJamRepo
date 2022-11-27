@@ -9,12 +9,18 @@ public class HealthSystem : MonoBehaviour
     public int maxHealth = 10;
     public float curentHealth = 10;
     
+    [Header("GFX")]
     public Color healthColor;
     public List<Image> hearths;
 
-    // Checkpoint
-    public Vector3 lastCheckpointPosition;
-    public bool Restart;
+    [Header("Checkpoints")]
+    public Vector3 lastCheckpoint;
+
+    public void RestoreFullHealth()
+    {
+        curentHealth = maxHealth;
+        // TODO
+    }
 
     public void TakeDamage()
     {
@@ -24,6 +30,14 @@ public class HealthSystem : MonoBehaviour
             Die();
 
         RemoveHealthFromBar();
+    }
+
+    public bool IsStillAlive()
+    {
+        if (curentHealth > 0.0f)
+            return true;
+
+        return false;
     }
 
     public void RemoveHealthFromBar()
@@ -48,16 +62,12 @@ public class HealthSystem : MonoBehaviour
             hearths[0].fillAmount = 0.5f;
     }
 
-    //public void 
-
     public void Die()
     {
-        // TODO: Checkpoints
-        Restart = true;
-        transform.position = lastCheckpointPosition;
+        Debug.Log("ded");
     }
 
-    private void Start()
+    private void Awake()
     {
         curentHealth = maxHealth;
     }
