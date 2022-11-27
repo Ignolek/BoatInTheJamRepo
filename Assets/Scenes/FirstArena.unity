@@ -6095,6 +6095,7 @@ MonoBehaviour:
     count: 15
     rate: 2
   nextWave: 0
+  isGateOpen: 0
 --- !u!65 &299077788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7911,6 +7912,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5882292029539871, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882292029539871, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5882292029539871, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3e3f8346cd4ec4747aba7e81c9317ce6, type: 3}
+    - target: {fileID: 5882292029539871, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.679
+      objectReference: {fileID: 0}
     - target: {fileID: 591922884100915880, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7959,6 +7976,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3843333278677153517, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: db9e9db3f58a3864c9f0e99478736785, type: 3}
+    - target: {fileID: 9066388178574922164, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b40a4af7c55ff2744b8d9bd57818e6c4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
 --- !u!1 &443245405
@@ -8696,6 +8721,7 @@ MonoBehaviour:
     count: 30
     rate: 5
   nextWave: 0
+  isGateOpen: 0
 --- !u!65 &468822370
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14132,7 +14158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &758646290
 PrefabInstance:
@@ -19909,6 +19935,7 @@ MonoBehaviour:
     count: 15
     rate: 2
   nextWave: 0
+  isGateOpen: 0
 --- !u!65 &1036126746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32485,7 +32512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &1720509730
 PrefabInstance:
@@ -35762,7 +35789,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7985497429119931701, guid: 889c63e8cebcec241a0553e81dba0286, type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7985497429119931701, guid: 889c63e8cebcec241a0553e81dba0286, type: 3}
       propertyPath: m_LocalPosition.x

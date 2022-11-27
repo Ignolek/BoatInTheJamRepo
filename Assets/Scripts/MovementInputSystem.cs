@@ -70,11 +70,16 @@ public class MovementInputSystem : MonoBehaviour
 
         Vector2 inputVector = inputActions.Player.Movement.ReadValue<Vector2>();
 
+        if (bodyAnimator.GetBool("Move"))
+        {
+            if(!steps.isPlaying)
+                steps.Play();
+        }
+
         if (!lockInPlace)
         {
             rigidBody.MovePosition((transform.position + Quaternion.Euler(0, -133, 0) * new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed));
             bodyAnimator.SetBool("Move", true);
-            steps.Play();
         }
 
         if (inputVector != Vector2.zero)
