@@ -237,7 +237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4475334
 Transform:
   m_ObjectHideFlags: 0
@@ -6073,26 +6073,23 @@ MonoBehaviour:
   waves:
   - name: 1
     enemies:
-    - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
-    - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
-    - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
-    count: 10
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
+    count: 4
     rate: 2
   - name: 2
     enemies:
-    - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    count: 15
+    count: 6
     rate: 2
   - name: 3
     enemies:
-    - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
-    count: 15
+    count: 6
     rate: 2
   nextWave: 0
   isGateOpen: 0
@@ -6628,7 +6625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &344738135
 Transform:
   m_ObjectHideFlags: 0
@@ -7946,7 +7943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 591922884100915892, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.86
+      value: 241.3
       objectReference: {fileID: 0}
     - target: {fileID: 591922884100915892, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8012,7 +8009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &443245406
 Transform:
   m_ObjectHideFlags: 0
@@ -8713,8 +8710,24 @@ MonoBehaviour:
   waves:
   - name: 1
     enemies:
-    - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
-    count: 1
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
+    - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
+    count: 5
+    rate: 2
+  - name: 2
+    enemies:
+    - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
+    - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
+    count: 6
+    rate: 2
+  - name: 2
+    enemies:
+    - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
+    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
+    count: 10
     rate: 2
   nextWave: 0
   isGateOpen: 0
@@ -12556,7 +12569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &670847475
 Transform:
   m_ObjectHideFlags: 0
@@ -14436,7 +14449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &772356845
 Transform:
   m_ObjectHideFlags: 0
@@ -15365,7 +15378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &828327271
 Transform:
   m_ObjectHideFlags: 0
@@ -15708,7 +15721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &837147605
 Transform:
   m_ObjectHideFlags: 0
@@ -17586,7 +17599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &918575988
 Transform:
   m_ObjectHideFlags: 0
@@ -19916,28 +19929,20 @@ MonoBehaviour:
   - name: 1
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    count: 0
+    count: 4
     rate: 2
   - name: 2
     enemies:
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    count: 15
+    count: 6
     rate: 2
   - name: 3
     enemies:
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    count: 15
-    rate: 2
-  - name: 4
-    enemies:
-    - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
-    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
-    count: 15
+    count: 4
     rate: 2
   nextWave: 0
   isGateOpen: 0
@@ -20849,7 +20854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1064137686
 Transform:
   m_ObjectHideFlags: 0
@@ -27054,7 +27059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1425666567
 Transform:
   m_ObjectHideFlags: 0
@@ -34922,7 +34927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1889653297
 Transform:
   m_ObjectHideFlags: 0
@@ -36556,7 +36561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006117568
 Transform:
   m_ObjectHideFlags: 0
@@ -37986,7 +37991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2091278855
 Transform:
   m_ObjectHideFlags: 0
