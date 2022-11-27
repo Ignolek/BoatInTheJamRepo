@@ -7,21 +7,33 @@ public class PlayerAttackSystem : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Enemy")
-            return;
-
-        if (GetComponent<BoxCollider>().enabled)
+        if (other.tag == "Enemy")
         {
-            other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.lightAttackDamage);
-            //other.GetComponent<Boss>().TakeDamage(PlayerStats.Instance.lightAttackDamage);
-            CameraMovement cameraShake = GameObject.Find("Camera").GetComponent<CameraMovement>();
-            StartCoroutine(cameraShake.Shake(.05f, .2f));
-            StartCoroutine(PlayerStats.Instance.Rumble(0.05f));
+            if (GetComponent<BoxCollider>().enabled)
+            {
+                other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.lightAttackDamage);
+                CameraMovement cameraShake = GameObject.Find("Camera").GetComponent<CameraMovement>();
+                StartCoroutine(cameraShake.Shake(.05f, .2f));
+                StartCoroutine(PlayerStats.Instance.Rumble(0.05f));
+            }
+            if (GetComponent<SphereCollider>().enabled)
+            {
+                other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.heavyAttackDamage);
+            }
         }
-        if (GetComponent<SphereCollider>().enabled)
+        if (other.tag == "Boss")
         {
-            other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.heavyAttackDamage);
-            //other.GetComponent<Boss>().TakeDamage(PlayerStats.Instance.heavyAttackDamage);
+            if (GetComponent<BoxCollider>().enabled)
+            {
+                other.GetComponent<Boss>().TakeDamage(PlayerStats.Instance.lightAttackDamage);
+                CameraMovement cameraShake = GameObject.Find("Camera").GetComponent<CameraMovement>();
+                StartCoroutine(cameraShake.Shake(.05f, .2f));
+                StartCoroutine(PlayerStats.Instance.Rumble(0.05f));
+            }
+            if (GetComponent<SphereCollider>().enabled)
+            {
+                other.GetComponent<Boss>().TakeDamage(PlayerStats.Instance.heavyAttackDamage);
+            }
         }
     }
 

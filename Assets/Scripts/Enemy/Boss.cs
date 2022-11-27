@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Boss : MonoBehaviour
     public Animator animator;
     public Transform ShootPoint;
     public GameObject waveSpawner;
+    public Image[] borowankoText;
+
 
     //Params
     public float Health;
@@ -47,6 +50,9 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!waveSpawner.GetComponent<WaveSpawner>().inCombat)
+            return;
+
         agent.destination = Player.transform.position;
 
         animator.SetBool("Movement", true);
@@ -93,10 +99,35 @@ public class Boss : MonoBehaviour
     {
         CurrentHealth -= damage;
 
+        var image = Instantiate(borowankoText[(int)Random.Range(0, 3)], transform.Find("Canvas"));
+        StartCoroutine(MoveImageUp(image));
+
         if (CurrentHealth <= 0)
         {
             Invoke(nameof(DestroyEnemy), 0.5f);
         }
+    }
+
+    IEnumerator MoveImageUp(Image image)
+    {
+        float timeToMoveUp = 1.5f;
+
+        while (timeToMoveUp >= 0)
+        {
+            image.rectTransform.position = new Vector3(
+                image.rectTransform.position.x,
+                image.rectTransform.position.y + Time.deltaTime * 15f,
+                image.rectTransform.position.z
+            );
+
+            image.rectTransform.localScale += new Vector3(0.01f, 0.01f, 0.01f) * Time.deltaTime;
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - 2f * Time.deltaTime);
+
+            timeToMoveUp -= Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(image.gameObject);
     }
 
     private void DestroyEnemy()
