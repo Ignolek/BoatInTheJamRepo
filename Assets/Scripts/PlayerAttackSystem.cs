@@ -13,6 +13,7 @@ public class PlayerAttackSystem : MonoBehaviour
         if (GetComponent<BoxCollider>().enabled)
         {
             other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.lightAttackDamage);
+            //other.GetComponent<Boss>().TakeDamage(PlayerStats.Instance.lightAttackDamage);
             CameraMovement cameraShake = GameObject.Find("Camera").GetComponent<CameraMovement>();
             StartCoroutine(cameraShake.Shake(.05f, .2f));
             StartCoroutine(PlayerStats.Instance.Rumble(0.05f));
@@ -20,6 +21,7 @@ public class PlayerAttackSystem : MonoBehaviour
         if (GetComponent<SphereCollider>().enabled)
         {
             other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.heavyAttackDamage);
+            //other.GetComponent<Boss>().TakeDamage(PlayerStats.Instance.heavyAttackDamage);
         }
     }
 

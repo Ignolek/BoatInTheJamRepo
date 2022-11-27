@@ -53,9 +53,9 @@ public class Boss : MonoBehaviour
         
         float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
 
-        if (distance <= distanceAttackRange && distance > meleeAttackRange)
-            rangeAttack();
-        else if (distance <= meleeAttackRange)
+/*        if (distance <= distanceAttackRange && distance > meleeAttackRange)
+            rangeAttack();*/
+        if (distance <= meleeAttackRange)
             meleeAttack();
     }
 
