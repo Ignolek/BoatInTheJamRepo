@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    public Vector3 initialPosition;
-    public Vector3 closePosition;
+    private Vector3 initialPosition;
+    private Vector3 closePosition;
+    public float floatToRiseGate;
     public GameObject waveSpawner;
+    //public float lerpDuration;
 
     void Start()
     {
         initialPosition = transform.position;
+        closePosition = new Vector3(initialPosition.x, initialPosition.y + floatToRiseGate, initialPosition.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(waveSpawner.GetComponent<WaveSpawner>().inCombat)
+
+        if (waveSpawner.GetComponent<WaveSpawner>().inCombat)
         {
-            //transform.position.y = Mathf.Lerp(initialPosition.y, closePosition.y, );
+            CloseTheGate();
         }
+        else
+            OpenTheGate();
+        
+    }
+
+    void CloseTheGate()
+    {
+        transform.position = closePosition;
+    }
+
+    void OpenTheGate()
+    {
+        transform.position = initialPosition;
     }
 }

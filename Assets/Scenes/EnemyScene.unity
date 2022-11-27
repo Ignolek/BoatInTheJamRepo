@@ -814,7 +814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434495795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.48, y: -1.9, z: -10.57}
+  m_LocalPosition: {x: 4.48, y: -2.32, z: -10.57}
   m_LocalScale: {x: 4.7418, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 374942172}
@@ -891,9 +891,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 434495795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de0687aa92a06084f8caad8935b08c3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c33a8090264f3245ab7b57cab53144e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatToRiseGate: 3
+  waveSpawner: {fileID: 1147377268}
 --- !u!43 &437953870
 Mesh:
   m_ObjectHideFlags: 0
@@ -1632,8 +1634,7 @@ MonoBehaviour:
   curentHealth: 10
   healthColor: {r: 0, g: 0, b: 0, a: 0}
   hearths: []
-  lastCheckpointPosition: {x: 0, y: 0, z: 0}
-  Restart: 0
+  lastCheckpoint: {x: 0, y: 0, z: 0}
 --- !u!65 &1064941032
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1690,18 +1691,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cf0209d68e89f49aa55dee27d1f6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1064941030}
+  healthSystem: {fileID: 1064941031}
   inCombat: 0
+  spawnPoints:
+  - {fileID: 1740586101}
+  state: 2
+  timeBetweenWaves: 1
+  waveTimeCountdown: 0
   waves:
   - name: FirstWave
     enemies:
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     count: 1
     rate: 1
-  spawnPoints:
-  - {fileID: 1740586101}
-  timeBetweenWaves: 1
-  waveCountdown: 0
-  state: 2
+  nextWave: 0
 --- !u!4 &1147377271
 Transform:
   m_ObjectHideFlags: 0
@@ -1746,6 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e626acc1cb2ef34383e32765fb931d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transform: {fileID: 0}
 --- !u!65 &1155280084
 BoxCollider:
   m_ObjectHideFlags: 0

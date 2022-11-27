@@ -45,7 +45,7 @@ public class EnemyStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TakeDamage(10f * Time.deltaTime);
+        //TakeDamage(10f * Time.deltaTime);
         agent.destination = Player.transform.position;
         float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
         

@@ -13,8 +13,11 @@ public class BombEnemy : MonoBehaviour
     public float Health;
     public float CurrentHealth;
     public float attackRange;
+    public float explosionRange;
 
     public bool alreadyAttacked;
+
+    private float distance;
 
     private void Awake()
     {
@@ -37,7 +40,7 @@ public class BombEnemy : MonoBehaviour
                 DestroyEnemy();
         }
 
-        float distance = Vector3.Distance(transform.position, Player.transform.position);
+        distance = Vector3.Distance(transform.position, Player.transform.position);
 
         if (distance <= attackRange)
         {
@@ -56,6 +59,16 @@ public class BombEnemy : MonoBehaviour
     {
         // Here BUUUUM code
         Debug.Log("BUUUUUUUUM");
+
+        // Play particles
+
+        //
+
+        if (distance <= explosionRange)
+        {
+            Player.GetComponent<HealthSystem>().TakeDamage();
+
+        }
         //
         Destroy(gameObject);
     }
