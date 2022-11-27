@@ -49,6 +49,8 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        agent.destination = Player.position;
         if (!waveSpawner.GetComponent<WaveSpawner>().inCombat)
         {
             // Idle animation
@@ -58,7 +60,6 @@ public class Boss : MonoBehaviour
         {
             animator.SetBool("Movement", true);
             animator.SetBool("Idle", false);
-            agent.destination = Player.transform.position;
             float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
 
             if (distance <= distanceAttackRange && distance > meleeAttackRange)
