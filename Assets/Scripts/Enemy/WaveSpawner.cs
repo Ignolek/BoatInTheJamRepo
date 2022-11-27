@@ -138,7 +138,6 @@ public class WaveSpawner : MonoBehaviour
         if (enemiesToDestroy.Length != 0)
             return true;
 
-        // TODO: this one might create some bugs, but we will deal with it later
         return false;
     }
     
@@ -153,8 +152,7 @@ public class WaveSpawner : MonoBehaviour
         // Spawn as much enemies as we need
         for (int i = 0; i < _wave.count; i++)
         {
-            // TODO: check this one - range is exlusive in the max
-            SpawnEnemies(_wave.enemies[Random.Range(0, _wave.enemies.Length)]);
+            SpawnEnemies(_wave.enemies[Random.Range(0, _wave.enemies.Length + 1)]);
             yield return new WaitForSeconds(1f/_wave.rate);
         }
         

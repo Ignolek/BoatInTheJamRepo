@@ -6,11 +6,16 @@ public class PlayerAttackSystem : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        //if (GetComponent<BoxCollider>().enabled)
-        //    Debug.Log("Box collider");
-        //if (GetComponent<SphereCollider>().enabled)
-        //    Debug.Log("Sphere collider");
+        if (other.tag != "Enemy")
+            return;
 
-        Destroy(other.gameObject);
+        if (GetComponent<BoxCollider>().enabled)
+        {
+            other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.lightAttackDamage);
+        }
+        if (GetComponent<SphereCollider>().enabled)
+        {
+            other.GetComponent<EnemyStateMachine>().TakeDamage(PlayerStats.Instance.heavyAttackDamage);
+        }
     }
 }

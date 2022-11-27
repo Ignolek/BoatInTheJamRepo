@@ -9,6 +9,7 @@ public class EnemyStateMachine : MonoBehaviour
     private NavMeshAgent agent;
     public Transform Player;
     public Transform ShootPoint;
+    public Animator animator;
 
     private Vector3 initialPosition;
     //public Collider arenaCollider;
@@ -35,6 +36,7 @@ public class EnemyStateMachine : MonoBehaviour
         CurrentHealth = Health;
         Player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -48,43 +50,39 @@ public class EnemyStateMachine : MonoBehaviour
         //TakeDamage(10f * Time.deltaTime);
         agent.destination = Player.transform.position;
         float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
-        
+
         if (distance <= attackRange)
-        {
             Attack();
-        }
+        else
+            animator.SetBool("Movement", true);
     }
 
     private void Attack()
     {
+        animator.SetBool("Movement", false);
+
         // Make sure enemy doesn't move
         if (isRangeType)
             agent.SetDestination(transform.position);
 
-        transform.LookAt(Player.transform.position);
+        transform.LookAt(Player.transform.position + new Vector3(0, 1, 0));
 
         if (!alreadyAttacked)
         {
             if (isRangeType)
             {
                 // Range attack code here:
-
                 Rigidbody rb = Instantiate(projectile, ShootPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
                 rb.AddForce(ShootPoint.transform.forward * projectileSpeed, ForceMode.Impulse);
-
-                //
+                animator.SetTrigger("Shoot");
             }
-
             else
             {
                 // Melee attack code here:
-
                 agent.speed *= 50;
                 transform.localScale *= 1.2f;
 
                 charge = true;
-
-                //
             }
                 
             alreadyAttacked = true;
@@ -106,9 +104,12 @@ public class EnemyStateMachine : MonoBehaviour
 
         alreadyAttacked = false;
     }
+
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
+        animator.SetTrigger("Damage");
+
         if (CurrentHealth <= 0)
         {
             Debug.Log("Dead");

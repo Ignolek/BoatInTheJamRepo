@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(collision.rigidbody.name);
-        if(collision.transform.CompareTag("Player"))
+        if (other.transform.parent.transform.name == "Player")
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<HealthSystem>().TakeDamage();
-        }
-        else
-        {
-            Debug.Log("STH");
+            GameObject.Find("Health").GetComponent<HealthSystem>().TakeDamage();
         }
 
         Destroy(gameObject);
