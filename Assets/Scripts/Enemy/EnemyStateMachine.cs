@@ -72,8 +72,6 @@ public class EnemyStateMachine : MonoBehaviour
             if (isRangeType)
             {
                 // Range attack code here:
-                Rigidbody rb = Instantiate(projectile, ShootPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb.AddForce(ShootPoint.transform.forward * projectileSpeed, ForceMode.Impulse);
                 animator.SetTrigger("Shoot");
             }
             else
@@ -92,6 +90,12 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
+    public void Shoot()
+    {
+        Rigidbody rb = Instantiate(projectile, ShootPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        rb.AddForce(ShootPoint.transform.forward * projectileSpeed, ForceMode.Impulse);
+        rb.transform.rotation = transform.rotation;
+    }
 
     private void ResetAttack()
     {
