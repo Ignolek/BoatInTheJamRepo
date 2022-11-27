@@ -220,7 +220,7 @@ MonoBehaviour:
   isRangeType: 1
   projectile: {fileID: 5406475801521803629, guid: 6be911dcb917f994b86c80534008aa37, type: 3}
   attackRange: 20
-  projectileSpeed: 8
+  projectileSpeed: 12
   isDead: 0
 --- !u!136 &2396158731038255159
 CapsuleCollider:

@@ -27,10 +27,14 @@ public class WaveSpawner : MonoBehaviour
     private Coroutine activeCoroutine;
     public Wave[] waves;
     public int nextWave = 0;
+    public bool isGateOpen = false;
 
 
     public void OnTriggerEnter(Collider other)
     {
+        if (isGateOpen)
+            return;
+
         if (other.transform.parent.transform.name == player.transform.name)
             inCombat = true;
     }
@@ -39,7 +43,6 @@ public class WaveSpawner : MonoBehaviour
     {
         waveTimeCountdown = timeBetweenWaves;
         state = SpawnState.COUNTING;
-        healthSystem = player.GetComponent<HealthSystem>();
     }
 
     private void CurrentlyInCombat()
@@ -121,8 +124,8 @@ public class WaveSpawner : MonoBehaviour
         // We need to check if there are more waves
         if (nextWave + 1 > waves.Length - 1)
         {
-            Debug.Log("All waves complete... Looping!");
-            nextWave = 0;
+            Debug.Log("All waves complete...");
+            isGateOpen = true;
             inCombat = false;
         }
         // If there are more waves...

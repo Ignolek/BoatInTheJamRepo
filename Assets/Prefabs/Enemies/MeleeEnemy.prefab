@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   ShootPoint: {fileID: 6893087410843644206}
+  animator: {fileID: 0}
   isPlayerOnStage: 0
   Health: 100
   CurrentHealth: 0
@@ -156,7 +157,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -176,7 +177,7 @@ GameObject:
   - component: {fileID: 619682874642888366}
   m_Layer: 0
   m_Name: Face
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

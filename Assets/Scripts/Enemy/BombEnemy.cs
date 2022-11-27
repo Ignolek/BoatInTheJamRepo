@@ -65,11 +65,8 @@ public class BombEnemy : MonoBehaviour
         //
 
         if (distance <= explosionRange)
-        {
-            Player.GetComponent<HealthSystem>().TakeDamage();
-
-        }
-        //
+            GameObject.Find("Health").GetComponent<HealthSystem>().TakeDamage();
+        
         Destroy(gameObject);
     }
 }

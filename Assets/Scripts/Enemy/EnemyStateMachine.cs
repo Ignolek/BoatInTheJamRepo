@@ -54,12 +54,16 @@ public class EnemyStateMachine : MonoBehaviour
         if (distance <= attackRange)
             Attack();
         else
-            animator.SetBool("Movement", true);
+        {
+            if (animator != null)
+                animator.SetBool("Movement", true);
+        }
     }
 
     private void Attack()
     {
-        animator.SetBool("Movement", false);
+        if (animator != null)
+            animator.SetBool("Movement", false);
 
         // Make sure enemy doesn't move
         if (isRangeType)
@@ -72,7 +76,8 @@ public class EnemyStateMachine : MonoBehaviour
             if (isRangeType)
             {
                 // Range attack code here:
-                animator.SetTrigger("Shoot");
+                if (animator != null)
+                    animator.SetTrigger("Shoot");
             }
             else
             {
@@ -112,11 +117,11 @@ public class EnemyStateMachine : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
-        animator.SetTrigger("Damage");
+        if (animator != null)
+            animator?.SetTrigger("Damage");
 
         if (CurrentHealth <= 0)
         {
-            Debug.Log("Dead");
             Invoke(nameof(DestroyEnemy), 0.5f);
         }
     }
