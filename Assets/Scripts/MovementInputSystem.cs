@@ -72,7 +72,7 @@ public class MovementInputSystem : MonoBehaviour
 
         if (bodyAnimator.GetBool("Move"))
         {
-            if(!steps.isPlaying)
+            if (!steps.isPlaying)
                 steps.Play();
         }
 
