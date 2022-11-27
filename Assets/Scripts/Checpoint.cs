@@ -9,7 +9,7 @@ public class Checpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.parent.transform.name == "Player")
+        if(other.transform?.parent?.transform.name == "Player")
         {
             GameObject player = other.transform.parent.gameObject;
 

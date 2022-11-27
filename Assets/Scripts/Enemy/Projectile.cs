@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent.transform.name == "Player")
+        if (other.transform?.parent?.transform.name == "Player")
         {
             GameObject.Find("Health").GetComponent<HealthSystem>().TakeDamage();
         }

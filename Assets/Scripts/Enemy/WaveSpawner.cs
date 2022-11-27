@@ -35,7 +35,7 @@ public class WaveSpawner : MonoBehaviour
         if (isGateOpen)
             return;
 
-        if (other.transform.parent.transform.name == player.transform.name)
+        if (other.transform?.parent?.transform.name == player.transform.name)
             inCombat = true;
     }
 
@@ -156,7 +156,7 @@ public class WaveSpawner : MonoBehaviour
         // Spawn as much enemies as we need
         for (int i = 0; i < _wave.count; i++)
         {
-            SpawnEnemies(_wave.enemies[Random.Range(0, _wave.enemies.Length + 1)]);
+            SpawnEnemies(_wave.enemies[Random.Range(0, _wave.enemies.Length)]);
             yield return new WaitForSeconds(1f/_wave.rate);
         }
         
