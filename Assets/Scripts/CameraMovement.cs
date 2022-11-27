@@ -30,8 +30,6 @@ public class CameraMovement : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("test");
-
         Camera.main.transform.localPosition = originalPos;
     }
 }

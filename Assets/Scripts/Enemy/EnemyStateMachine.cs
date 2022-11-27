@@ -11,7 +11,7 @@ public class EnemyStateMachine : MonoBehaviour
     public Transform Player;
     public Transform ShootPoint;
     public Animator animator;
-    public Image borowankoText;
+    public Image[] borowankoText;
 
     private Vector3 initialPosition;
     //public Collider arenaCollider;
@@ -122,7 +122,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (animator != null)
             animator?.SetTrigger("Damage");
 
-        var image = Instantiate(borowankoText, transform.Find("Canvas"));
+        var image = Instantiate(borowankoText[(int)Random.Range(0, 3)], transform.Find("Canvas"));
         StartCoroutine(MoveImageUp(image));
 
         if (CurrentHealth <= 0)
@@ -139,7 +139,7 @@ public class EnemyStateMachine : MonoBehaviour
         {
             image.rectTransform.position = new Vector3(
                 image.rectTransform.position.x, 
-                image.rectTransform.position.y + Time.deltaTime * 20f, 
+                image.rectTransform.position.y + Time.deltaTime * 15f, 
                 image.rectTransform.position.z
             );
 

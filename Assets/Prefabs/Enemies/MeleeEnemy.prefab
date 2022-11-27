@@ -250,7 +250,10 @@ MonoBehaviour:
   Player: {fileID: 0}
   ShootPoint: {fileID: 6893087410843644206}
   animator: {fileID: 0}
-  borowankoText: {fileID: 2554137610598084888, guid: edaa4b456d13ca14b99eb602d2a96392, type: 3}
+  borowankoText:
+  - {fileID: 2554137610598084888, guid: dcedfeb05281b9a4ca9f5111ef721b1b, type: 3}
+  - {fileID: 2554137610598084888, guid: 4513f9047c9acba4e87d48759ccd8740, type: 3}
+  - {fileID: 2554137610598084888, guid: edaa4b456d13ca14b99eb602d2a96392, type: 3}
   isPlayerOnStage: 0
   Health: 100
   CurrentHealth: 0
