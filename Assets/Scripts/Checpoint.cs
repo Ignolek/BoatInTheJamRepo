@@ -17,6 +17,7 @@ public class Checpoint : MonoBehaviour
 
             HealthSystem health = FindObjectOfType<HealthSystem>();
             health.lastCheckpoint = transform.position;
+            health.RestoreFullHealth();
         }
     }
 }

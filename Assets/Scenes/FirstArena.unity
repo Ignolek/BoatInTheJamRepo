@@ -6075,14 +6075,14 @@ MonoBehaviour:
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     count: 4
-    rate: 2
+    rate: 1
   - name: 2
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     count: 4
-    rate: 2
+    rate: 1
   - name: 3
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
@@ -6090,7 +6090,7 @@ MonoBehaviour:
     - {fileID: 1501513524516727232, guid: ac6266c9b9d605d40a4a6c263da6de63, type: 3}
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     count: 4
-    rate: 2
+    rate: 1
   nextWave: 0
   isGateOpen: 0
 --- !u!65 &299077788
@@ -7935,7 +7935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 591922884100915892, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000015258789
+      value: 2.11
       objectReference: {fileID: 0}
     - target: {fileID: 591922884100915892, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7943,7 +7943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 591922884100915892, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.7
+      value: 237
       objectReference: {fileID: 0}
     - target: {fileID: 591922884100915892, guid: 2d1e846dbd4709e4da70920411672a02, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8678,7 +8678,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468822367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.61, y: 3.26, z: -219.15}
+  m_LocalPosition: {x: 54.63, y: 3.26, z: -217.4}
   m_LocalScale: {x: 10, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 803593806}
@@ -8711,18 +8711,18 @@ MonoBehaviour:
   - name: 1
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
-    count: 2
-    rate: 2
+    count: 3
+    rate: 1
   - name: 2
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     count: 2
-    rate: 2
+    rate: 1
   - name: 2
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     count: 2
-    rate: 2
+    rate: 1
   nextWave: 0
   isGateOpen: 0
 --- !u!65 &468822370
@@ -10980,7 +10980,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 80}
   m_Children: []
   m_Father: {fileID: 922513837}
-  m_RootOrder: 117
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!65 &603718310
 BoxCollider:
@@ -17593,6 +17593,7 @@ Transform:
   - {fileID: 84041917}
   - {fileID: 73956020}
   - {fileID: 226227502}
+  - {fileID: 603718309}
   - {fileID: 186790202}
   - {fileID: 2056219206}
   - {fileID: 1093434745}
@@ -17690,7 +17691,6 @@ Transform:
   - {fileID: 10711940}
   - {fileID: 421383217}
   - {fileID: 734723745}
-  - {fileID: 603718309}
   - {fileID: 161294107}
   - {fileID: 1561286117}
   - {fileID: 1029197273}
@@ -19797,20 +19797,20 @@ MonoBehaviour:
     enemies:
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     count: 4
-    rate: 2
+    rate: 1
   - name: 2
     enemies:
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     count: 4
-    rate: 2
+    rate: 1
   - name: 3
     enemies:
     - {fileID: 2396158731038255112, guid: ab99239d20372784f93c11ba15beefc7, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     - {fileID: 2396158731038255112, guid: c3a2874232245fe41ab16c5643c016e2, type: 3}
     count: 4
-    rate: 2
+    rate: 1
   nextWave: 0
   isGateOpen: 0
 --- !u!65 &1036126746
