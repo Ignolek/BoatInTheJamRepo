@@ -35,8 +35,6 @@ public class Boss : MonoBehaviour
         Player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        if (animator == null)
-            Debug.LogError("NO ANIMATOR ON BOSS!");
     }
 
     // Start is called before the first frame update
@@ -49,28 +47,16 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        agent.destination = Player.transform.position;
 
-        agent.destination = Player.position;
-        if (!waveSpawner.GetComponent<WaveSpawner>().inCombat)
-        {
-            // Idle animation
-            animator.SetBool("Idle", true);
-        }
-        else
-        {
-            animator.SetBool("Movement", true);
-            animator.SetBool("Idle", false);
-            float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
+        animator.SetBool("Movement", true);
+        
+        float distance = Vector3.Distance(agent.transform.position, Player.transform.position);
 
-            if (distance <= distanceAttackRange && distance > meleeAttackRange)
-            {
-                rangeAttack();
-            }
-            else if (distance <= meleeAttackRange)
-            {
-                meleeAttack();
-            }
-        }
+        if (distance <= distanceAttackRange && distance > meleeAttackRange)
+            rangeAttack();
+        else if (distance <= meleeAttackRange)
+            meleeAttack();
     }
 
     private void rangeAttack()
@@ -80,7 +66,7 @@ public class Boss : MonoBehaviour
         {
             // Play animation here (probably)
             animator.SetBool("Movement", false);
-            animator.SetTrigger("Shoot");
+            animator.SetTrigger("Fire");
             //
 
             Rigidbody rb = Instantiate(projectile, ShootPoint.transform.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -97,7 +83,7 @@ public class Boss : MonoBehaviour
         {
             // Play animation here (probably)
             animator.SetBool("Movement", false);
-            animator.SetTrigger("Damage");
+            animator.SetTrigger("Attack");
             //
             alreadyAttacked = true;
         }
@@ -106,8 +92,6 @@ public class Boss : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
-        if (animator != null)
-            animator?.SetTrigger("Damage");
 
         if (CurrentHealth <= 0)
         {
