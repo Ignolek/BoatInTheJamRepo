@@ -23,6 +23,10 @@ public class MovementInputSystem : MonoBehaviour
     [HideInInspector] public Rigidbody rigidBody;
     [HideInInspector] public PlayerInput playerInput;
     [HideInInspector] public PlayerInputActions inputActions;
+    [Header("Sounds")]
+    public AudioSource steps;
+    public AudioSource lightAttack;
+    public AudioSource heavyAttack;
 
     public void ChangePlayerColor()
     {
@@ -70,6 +74,7 @@ public class MovementInputSystem : MonoBehaviour
         {
             rigidBody.MovePosition((transform.position + Quaternion.Euler(0, 37, 0) * new Vector3(inputVector.x, 0, inputVector.y) * Time.deltaTime * speed));
             bodyAnimator.SetBool("Move", true);
+            steps.Play();
         }
 
         if (inputVector != Vector2.zero)
@@ -112,6 +117,7 @@ public class MovementInputSystem : MonoBehaviour
             return;
 
         mirrorAnimator.SetTrigger("LightAttack");
+        lightAttack.Play();
     }
     
     private void HeavyAttack_performed(InputAction.CallbackContext context)
@@ -122,6 +128,7 @@ public class MovementInputSystem : MonoBehaviour
         lockInPlace = true;
         lockRotation = true;
         mirrorAnimator.SetTrigger("HeavyAttack");
+        heavyAttack.Play();
     }
 
     private void StayInPlace_performed(InputAction.CallbackContext context)

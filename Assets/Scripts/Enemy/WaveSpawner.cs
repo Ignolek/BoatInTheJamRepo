@@ -39,6 +39,7 @@ public class WaveSpawner : MonoBehaviour
     {
         waveTimeCountdown = timeBetweenWaves;
         state = SpawnState.COUNTING;
+        healthSystem = player.GetComponent<HealthSystem>();
     }
 
     private void CurrentlyInCombat()
